@@ -11,3 +11,13 @@ class InvalidSeatNumberError(DomainError):
 class InvalidReservationStateError(DomainError):
     """Raised when a reservation state transition is invalid."""
     pass
+
+
+class SeatAlreadyReservedError(DomainError):
+    """Raised when a seat is already reserved for a show."""
+    pass
+
+
+class ReservationNotEligibleError(DomainError):
+    """Raised when a reservation is not eligible for confirmation."""
+    pass

@@ -1,0 +1,26 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.15, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\TRACY\AppData\Local\Programs\Python\Python313\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\TRACY\Cinema-Seat-Reservation
+collecting ... collected 18 items
+
+tests/test_t1_br1_seat_number.py::test_t1_br1_accepts_valid_seat_numbers PASSED [  5%]
+tests/test_t1_br1_seat_number.py::test_t1_br1_accepts_boundary_seat_numbers PASSED [ 11%]
+tests/test_t1_br1_seat_number.py::test_t1_br1_rejects_invalid_seat_numbers PASSED [ 16%]
+tests/test_t2_br2_reservation_state.py::test_t2_br2_reservation_starts_in_pending_state PASSED [ 22%]
+tests/test_t2_br2_reservation_state.py::test_t2_br2_pending_reservation_can_be_confirmed PASSED [ 27%]
+tests/test_t2_br2_reservation_state.py::test_t2_br2_confirmed_reservation_cannot_be_confirmed_again PASSED [ 33%]
+tests/test_t3_br3_show_seat_allocation.py::test_t3_br3_new_show_seats_start_available PASSED [ 38%]
+tests/test_t3_br3_show_seat_allocation.py::test_t3_br3_available_seat_can_be_reserved_once PASSED [ 44%]
+tests/test_t3_br3_show_seat_allocation.py::test_t3_br3_reserved_seat_cannot_be_reserved_again PASSED [ 50%]
+tests/test_t3_br3_show_seat_allocation.py::test_t3_br3_same_seat_in_different_show_is_independent PASSED [ 55%]
+tests/test_t3_br3_show_seat_allocation.py::test_t3_br3_different_seats_in_same_show_can_both_be_reserved PASSED [ 61%]
+tests/test_t4_br4_reservation_eligibility.py::test_t4_br4_future_show_with_no_confirmed_seats_is_eligible PASSED [ 66%]
+tests/test_t4_br4_reservation_eligibility.py::test_t4_br4_future_show_with_three_confirmed_seats_is_eligible PASSED [ 72%]
+tests/test_t4_br4_reservation_eligibility.py::test_t4_br4_future_show_with_four_confirmed_seats_is_rejected PASSED [ 77%]
+tests/test_t4_br4_reservation_eligibility.py::test_t4_br4_past_show_is_rejected PASSED [ 83%]
+tests/test_t4_br4_reservation_eligibility.py::test_t4_br4_show_starting_now_is_rejected PASSED [ 88%]
+tests/test_t4_br4_reservation_eligibility.py::test_t4_br4_confirmed_seats_for_other_show_do_not_count PASSED [ 94%]
+tests/test_t4_br4_reservation_eligibility.py::test_t4_br4_confirmed_seats_for_other_customer_do_not_count PASSED [100%]
+
+============================= 18 passed in 0.26s ==============================
