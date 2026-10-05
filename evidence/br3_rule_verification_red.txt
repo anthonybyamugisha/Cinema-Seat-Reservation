@@ -1,0 +1,74 @@
+BR3 - rule verification (RED)
+=================================
+
+WHAT THIS IS
+------------
+A behavioural RED for BR3: "Within one Show, a ShowSeat may be allocated to
+at most one Reservation."
+
+It was produced by temporarily deleting the invariant guard from
+Show.reserve_seat() and re-running the BR3 tests. The guard was restored
+immediately afterwards and is present in the current code and in git history.
+
+It answers the question "do these tests actually have teeth?" - if the rule is
+removed from the code, does a test notice? Here it does: the test fails with
+DID NOT RAISE SeatAlreadyReservedError, which is the exact behaviour BR3
+forbids.
+
+HONESTY NOTE
+------------
+This is NOT the original TDD history. It is a verification run captured on
+2026-10-05 against the finished code, and it is labelled that way on purpose.
+
+The original RED for BR3 is br3_red.txt. That one is weaker: it only records
+ModuleNotFoundError, which proves the module was absent. It does not prove any
+assertion about BR3 behaviour would have failed. A RED that dies at import
+time has not yet expressed the rule.
+
+WHY BOTH ARE KEPT
+-----------------
+Both are shown in the presentation, and the difference between them is the
+point: a RED has to fail on behaviour, not on a missing file.
+
+TO REPRODUCE
+------------
+Remove the guard block
+
+    if seat.status == SeatStatus.RESERVED:
+        raise SeatAlreadyReservedError(...)
+
+from Show.reserve_seat() in src/domain/entities/show.py, then run
+
+    pytest tests/test_t3_br3_show_seat_allocation.py -v
+
+OUTPUT
+------
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\DELL\OneDrive\Desktop\final-year-project\Cinema-Seat-Reservation\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\DELL\OneDrive\Desktop\final-year-project\Cinema-Seat-Reservation
+configfile: pytest.ini
+collecting ... collected 5 items
+
+tests/test_t3_br3_show_seat_allocation.py::test_t3_br3_new_show_seats_start_available PASSED [ 20%]
+tests/test_t3_br3_show_seat_allocation.py::test_t3_br3_available_seat_can_be_reserved_once PASSED [ 40%]
+tests/test_t3_br3_show_seat_allocation.py::test_t3_br3_reserved_seat_cannot_be_reserved_again FAILED [ 60%]
+tests/test_t3_br3_show_seat_allocation.py::test_t3_br3_same_seat_in_different_show_is_independent PASSED [ 80%]
+tests/test_t3_br3_show_seat_allocation.py::test_t3_br3_different_seats_in_same_show_can_both_be_reserved PASSED [100%]
+
+================================== FAILURES ===================================
+_____________ test_t3_br3_reserved_seat_cannot_be_reserved_again ______________
+
+    def test_t3_br3_reserved_seat_cannot_be_reserved_again():
+        show = _make_show()
+    
+        show.reserve_seat(SeatNumber("A10"), "R001", "C001")
+    
+>       with pytest.raises(SeatAlreadyReservedError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE SeatAlreadyReservedError
+
+tests\test_t3_br3_show_seat_allocation.py:39: Failed
+=========================== short test summary info ===========================
+FAILED tests/test_t3_br3_show_seat_allocation.py::test_t3_br3_reserved_seat_cannot_be_reserved_again
+========================= 1 failed, 4 passed in 0.13s =========================
