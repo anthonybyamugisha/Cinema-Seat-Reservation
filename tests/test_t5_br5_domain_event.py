@@ -7,6 +7,7 @@ from src.application.handlers.reservation_confirmed_handler import (
 from src.domain.entities.reservation import Reservation
 from src.domain.entities.show import Show
 from src.domain.entities.show_seat import ShowSeat, SeatStatus
+from src.domain.events.domain_event import DomainEvent
 from src.domain.events.reservation_confirmed import ReservationConfirmed
 from src.domain.exceptions.domain_exceptions import InvalidReservationStateError
 from src.domain.value_objects.seat_number import SeatNumber
@@ -57,6 +58,14 @@ def test_t5_br5_confirming_a_reservation_raises_reservation_confirmed():
     assert events[0].customer_id == "C001"
     assert events[0].show_id == "S001"
     assert events[0].seat_number == SeatNumber("A10")
+
+
+def test_t5_br5_event_is_a_domain_event_so_callers_program_against_the_abstraction():
+    reservation = _reservation()
+
+    reservation.confirm()
+
+    assert isinstance(reservation.pull_events()[0], DomainEvent)
 
 
 def test_t5_br5_pulling_events_clears_them():

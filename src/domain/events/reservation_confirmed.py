@@ -1,10 +1,11 @@
 from dataclasses import dataclass
 
+from src.domain.events.domain_event import DomainEvent
 from src.domain.value_objects.seat_number import SeatNumber
 
 
 @dataclass(frozen=True)
-class ReservationConfirmed:
+class ReservationConfirmed(DomainEvent):
     """BR5: raised by Reservation (Aggregate A) when it becomes CONFIRMED.
 
     It asks the Show (Aggregate B) to reserve the SeatNumber. It carries only
