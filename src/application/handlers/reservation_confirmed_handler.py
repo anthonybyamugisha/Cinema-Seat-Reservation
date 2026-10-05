@@ -19,5 +19,7 @@ class ReservationConfirmedHandler:
         if show is None:
             raise ShowNotFoundError(f"Show {event.show_id} not found")
 
-        show.reserve_seat(event.seat_number, event.reservation_id)
+        show.reserve_seat(
+            event.seat_number, event.reservation_id, event.customer_id
+        )
         self._show_repository.save(show)

@@ -49,7 +49,7 @@ def _build():
     service = ConfirmReservationService(
         reservation_repository=reservations,
         show_repository=shows,
-        eligibility_service=ReservationEligibilityService(reservations),
+        eligibility_service=ReservationEligibilityService(),
         event_dispatcher=dispatcher,
         clock=lambda: NOW,
     )

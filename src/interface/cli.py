@@ -21,7 +21,6 @@ from src.application.services.confirm_reservation_service import (
 )
 from src.domain.entities.reservation import Reservation
 from src.domain.entities.show import Show
-from src.domain.entities.show_seat import ShowSeat
 from src.domain.events.reservation_confirmed import ReservationConfirmed
 from src.domain.services.reservation_eligibility_service import (
     ReservationEligibilityService,
@@ -45,7 +44,7 @@ def build_service():
     service = ConfirmReservationService(
         reservation_repository=reservations,
         show_repository=shows,
-        eligibility_service=ReservationEligibilityService(reservations),
+        eligibility_service=ReservationEligibilityService(),
         event_dispatcher=dispatcher,
     )
     return service, reservations, shows
@@ -53,13 +52,14 @@ def build_service():
 
 def seed(reservations, shows):
     shows.save(
-        Show(
+        Show.create(
             show_id="S001",
             start_time=datetime.now() + timedelta(hours=2),
-            seats=[ShowSeat(SeatNumber("A10")), ShowSeat(SeatNumber("A11"))],
+            rows=1,
+            seats_per_row=2,
         )
     )
-    reservations.save(Reservation("R001", "C001", "S001", SeatNumber("A10")))
+    reservations.save(Reservation("R001", "C001", "S001", SeatNumber("A1")))
 
 
 def main(argv):

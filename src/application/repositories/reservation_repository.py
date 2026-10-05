@@ -14,7 +14,3 @@ class ReservationRepository(ABC):
     @abstractmethod
     def save(self, reservation: Reservation) -> None:
         """Store a new Reservation or replace an existing one."""
-
-    @abstractmethod
-    def count_confirmed_seats(self, customer_id: str, show_id: str) -> int:
-        """Number of CONFIRMED reservations the customer holds for the show (BR4)."""

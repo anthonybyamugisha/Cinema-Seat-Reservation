@@ -47,7 +47,7 @@ def _build():
     service = ConfirmReservationService(
         reservation_repository=reservations,
         show_repository=shows,
-        eligibility_service=ReservationEligibilityService(reservations),
+        eligibility_service=ReservationEligibilityService(),
         event_dispatcher=dispatcher,
         clock=lambda: NOW,
     )
@@ -77,7 +77,7 @@ def test_t8_show_rejects_seat_already_reserved_and_reservation_stays_pending():
     service, reservations, shows = _build()
     # Another reservation already holds A10 in this show.
     show = shows.get_by_id("S001")
-    show.reserve_seat(SeatNumber("A10"), "R001")
+    show.reserve_seat(SeatNumber("A10"), "R001", "C001")
     shows.save(show)
     reservations.save(Reservation("R002", "C002", "S001", SeatNumber("A10")))
 

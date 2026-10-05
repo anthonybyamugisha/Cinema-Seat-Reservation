@@ -44,6 +44,7 @@ class Reservation:
         self._events.append(
             ReservationConfirmed(
                 reservation_id=self.reservation_id,
+                customer_id=self.customer_id,
                 show_id=self.show_id,
                 seat_number=self.seat_number,
             )

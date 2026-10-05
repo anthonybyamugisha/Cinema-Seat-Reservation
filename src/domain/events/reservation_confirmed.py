@@ -12,5 +12,6 @@ class ReservationConfirmed:
     """
 
     reservation_id: str
+    customer_id: str
     show_id: str
     seat_number: SeatNumber

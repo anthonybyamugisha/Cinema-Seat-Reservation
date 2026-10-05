@@ -54,6 +54,7 @@ def test_t5_br5_confirming_a_reservation_raises_reservation_confirmed():
     assert len(events) == 1
     assert isinstance(events[0], ReservationConfirmed)
     assert events[0].reservation_id == "R001"
+    assert events[0].customer_id == "C001"
     assert events[0].show_id == "S001"
     assert events[0].seat_number == SeatNumber("A10")
 

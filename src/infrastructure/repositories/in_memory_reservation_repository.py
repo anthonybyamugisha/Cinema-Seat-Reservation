@@ -2,7 +2,7 @@ import copy
 from typing import Dict, Optional
 
 from src.application.repositories.reservation_repository import ReservationRepository
-from src.domain.entities.reservation import Reservation, ReservationStatus
+from src.domain.entities.reservation import Reservation
 
 
 class InMemoryReservationRepository(ReservationRepository):
@@ -21,12 +21,3 @@ class InMemoryReservationRepository(ReservationRepository):
 
     def save(self, reservation: Reservation) -> None:
         self._store[reservation.reservation_id] = copy.deepcopy(reservation)
-
-    def count_confirmed_seats(self, customer_id: str, show_id: str) -> int:
-        return sum(
-            1
-            for r in self._store.values()
-            if r.customer_id == customer_id
-            and r.show_id == show_id
-            and r.status == ReservationStatus.CONFIRMED
-        )

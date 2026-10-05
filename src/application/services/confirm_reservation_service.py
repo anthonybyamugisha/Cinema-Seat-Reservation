@@ -56,11 +56,11 @@ class ConfirmReservationService:
         status_before = reservation.status
 
         try:
-            # BR4
+            # BR4 - the rule is decided by the Domain Service from the two
+            # aggregates it is given. The Application layer only reads and saves.
             self._eligibility.check_eligibility(
-                customer_id=reservation.customer_id,
-                show_id=reservation.show_id,
-                show_start_time=show.start_time,
+                reservation=reservation,
+                show=show,
                 current_time=self._clock(),
             )
             # BR2, records ReservationConfirmed (BR5)
