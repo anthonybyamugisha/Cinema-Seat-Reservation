@@ -20,17 +20,17 @@ Reserve the corresponding seat in the Show after the Reservation is confirmed.
 
 ## Business Rules
 
-BR1 - SeatNumber must contain one row letter from A-Z followed by a seat position from 1-50.
+BR1 (Value rule) - SeatNumber must contain one row letter from A-Z followed by a seat position from 1-50.
 
-BR2 - A Reservation starts as PENDING and may only transition to CONFIRMED from PENDING.
+BR2 (Identity/state rule) - A Reservation starts as PENDING and may only transition to CONFIRMED from PENDING.
 
-BR3 - Within one Show, a ShowSeat may be allocated to at most one Reservation.
+BR3 (Invariant rule) - Within one Show, a ShowSeat may be allocated to at most one Reservation.
 
-BR4 - A Reservation is eligible only when the Show has not started and the customer has fewer than four confirmed seats for that Show.
+BR4 (Cross-concept rule) - A Reservation is eligible only when the Show has not started and the customer has fewer than four confirmed seats for that Show.
 
-BR5 - When a Reservation is confirmed, a ReservationConfirmed domain event requests the Show to reserve the SeatNumber.
+BR5 (Follow-up rule) - When a Reservation is confirmed, a ReservationConfirmed domain event requests the Show to reserve the SeatNumber.
 
-BR6 - A Reservation must already exist before confirmation can proceed.
+BR6 (Lookup rule) - A Reservation must already exist before confirmation can proceed.
 
 ## Where each business rule lives
 
@@ -107,4 +107,4 @@ pytest -v
 
 ## AI Usage Statement
 
-AI tools were used to support brainstorming, code planning, code assistance and code review in this project. The group remained responsible for understanding the design, writing and testing the application, and for reviewing and verifying every AI suggestion before including it.
+The AI tool ChatGPT was used to support brainstorming, code planning, code assistance and code review in this project. The group remained responsible for understanding the design, writing and testing the application, and for reviewing and verifying every AI suggestion before including it.
