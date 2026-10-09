@@ -1,7 +1,0 @@
-﻿SLIDE 10 - BR5 Domain Event Flow (Simple)
-
-- Event: ReservationConfirmed (extends DomainEvent). Only carries data (reservation_id, customer_id, show_id, seat_number). No links between aggregates.
-- Aggregate A (Reservation): confirm() while PENDING -> becomes CONFIRMED, records ReservationConfirmed (BR2, BR5)
-- pull_events() returns and clears events. EventDispatcher sends to handler.
-- Handler loads Aggregate B (Show), calls show.reserve_seat() (BR3), saves Show.
-- Key: Aggregates don't call each other. Aggregate records events, Application dispatches. Handler does load-call-save only. DomainEvent is the Layer Supertype.

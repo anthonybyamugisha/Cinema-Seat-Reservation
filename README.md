@@ -1,6 +1,5 @@
-# Cinema Seat Reservation
-
-This is a group coursework project for Domain-Driven Design, Test-Driven Development and Clean Architecture.
+## Cinema Seat Reservation
+Domain-Driven Design, Test-Driven Development and Clean Architecture.
 
 ## Domain
 
@@ -101,10 +100,21 @@ pytest -v
 
 `pytest.ini` puts the project root on `sys.path`, so the tests import `src` whether pytest is started as `pytest` or as `python -m pytest`.
 
+## Running the project
+
+Run the main use case from the command line
+```bash
+python -m src.interface.cli R001
+```
+
+```bash
+python scripts/check_dependencies.py
+```
+
 ## Evidence
 
-`evidence/` holds the recorded pytest output used in the presentation: the RED state from before each rule was implemented, and the final GREEN state.
+`evidence/` holds the recorded pytest output
 
 ## AI Usage Statement
 
-The AI tool ChatGPT was used to support brainstorming, code planning, code assistance and code review in this project. The group remained responsible for understanding the design, writing and testing the application, and for reviewing and verifying every AI suggestion before including it.
+We used ChatGPT to support this project in three ways: brainstorming possible designs, planning the DDD/Clean Architecture structure and assisting with writing code. We remained responsible for the final design, implementation and testing of the project
