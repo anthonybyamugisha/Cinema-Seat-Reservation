@@ -1,3 +1,4 @@
+
 import pytest
 
 from src.domain.value_objects.seat_number import SeatNumber
@@ -10,21 +11,19 @@ from src.domain.exceptions.domain_exceptions import InvalidSeatNumberError
 
 
 def test_t1_br1_accepts_valid_seat_numbers():
-    seat_one = SeatNumber("A1")
-    seat_two = SeatNumber("B12")
-    seat_three = SeatNumber("Z50")
+    valid_seats = ["A1", "B12", "Z50"]
 
-    assert seat_one.value == "A1"
-    assert seat_two.value == "B12"
-    assert seat_three.value == "Z50"
+    for seat in valid_seats:
+        seat_number = SeatNumber(seat)
+        assert seat_number.value == seat
 
 
 def test_t1_br1_accepts_boundary_seat_numbers():
-    first_valid_seat = SeatNumber("A1")
-    last_valid_seat = SeatNumber("Z50")
+    boundary_seats = ["A1", "Z50"]
 
-    assert first_valid_seat.value == "A1"
-    assert last_valid_seat.value == "Z50"
+    for seat in boundary_seats:
+        seat_number = SeatNumber(seat)
+        assert seat_number.value == seat
 
 
 def test_t1_br1_rejects_invalid_seat_numbers():

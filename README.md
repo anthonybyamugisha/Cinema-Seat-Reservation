@@ -113,8 +113,8 @@ python scripts/check_dependencies.py
 
 ## Evidence
 
-`evidence/` holds the recorded pytest output
+`sample_evidence_files/` contains sample test files
 
 ## AI Usage Statement
 
-We used ChatGPT to support this project in three ways: brainstorming possible designs, planning the DDD/Clean Architecture structure and assisting with writing code. We remained responsible for the final design, implementation and testing of the project
+We used ChatGPT to support this project in brainstorming and code assistance. We remained responsible for the final design, implementation and testing of the project

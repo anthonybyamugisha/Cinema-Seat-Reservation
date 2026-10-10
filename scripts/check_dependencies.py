@@ -1,15 +1,3 @@
-"""Check that source imports follow the Clean Architecture dependency rule.
-
-Run from the project root:  python scripts/check_dependencies.py
-
-Allowed (a layer may import the layers listed next to it):
-    domain          -> (nothing)
-    application     -> domain
-    infrastructure  -> application, domain
-    interface       -> application, infrastructure, domain
-
-The printed table is the real dependency list, for the Slide 8 diagram.
-"""
 import ast
 import sys
 from pathlib import Path

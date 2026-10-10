@@ -6,7 +6,7 @@ from src.domain.value_objects.seat_number import SeatNumber
 from src.domain.exceptions.domain_exceptions import SeatAlreadyReservedError
 
 
-# T3 â€” BR3: Show Seat Allocation
+# T3 - BR3: Show Seat Allocation
 # BR3: Within one Show, a ShowSeat may be allocated to at most one Reservation.
 # A reserved seat cannot be allocated to another reservation.
 
