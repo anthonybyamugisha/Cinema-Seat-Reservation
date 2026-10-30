@@ -5,12 +5,6 @@ from src.domain.entities.show_seat import ShowSeat, SeatStatus
 from src.domain.value_objects.seat_number import SeatNumber
 from src.domain.exceptions.domain_exceptions import SeatAlreadyReservedError
 
-
-# T3 - BR3: Show Seat Allocation
-# BR3: Within one Show, a ShowSeat may be allocated to at most one Reservation.
-# A reserved seat cannot be allocated to another reservation.
-
-
 def _make_show(show_id="S001", seat_numbers=("A10", "A11")):
     seats = [ShowSeat(SeatNumber(s)) for s in seat_numbers]
     return Show(show_id=show_id, start_time=None, seats=seats)

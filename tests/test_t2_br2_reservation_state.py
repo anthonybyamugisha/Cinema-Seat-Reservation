@@ -4,12 +4,6 @@ from src.domain.entities.reservation import Reservation, ReservationStatus
 from src.domain.value_objects.seat_number import SeatNumber
 from src.domain.exceptions.domain_exceptions import InvalidReservationStateError
 
-
-# T2 — BR2: Reservation State Transition
-# BR2: A Reservation starts in PENDING state and may transition to CONFIRMED
-# only from PENDING.
-
-
 def test_t2_br2_reservation_starts_in_pending_state():
     reservation = Reservation(
         reservation_id="R001",

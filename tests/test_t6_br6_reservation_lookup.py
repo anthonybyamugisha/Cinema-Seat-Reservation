@@ -26,11 +26,6 @@ from src.infrastructure.repositories.in_memory_show_repository import (
     InMemoryShowRepository,
 )
 
-
-# T6 — BR6: Reservation Lookup
-# BR6: A Reservation must already exist before confirmation can proceed.
-# The Application Service retrieves it through the ReservationRepository.
-
 NOW = datetime(2026, 10, 1, 12, 0, 0)
 
 

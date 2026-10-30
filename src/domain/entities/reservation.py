@@ -13,16 +13,6 @@ class ReservationStatus(Enum):
 
 @dataclass
 class Reservation:
-    """
-    Entity / Aggregate Root for BR2 (and the source of the BR5 event).
-
-    BR2: A Reservation starts in PENDING state and may transition
-    to CONFIRMED only from PENDING.
-
-    BR5: When it is confirmed, the Reservation records a ReservationConfirmed
-    domain event. The event is collected with pull_events().
-    """
-
     reservation_id: str
     customer_id: str
     show_id: str

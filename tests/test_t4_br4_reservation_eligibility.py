@@ -12,11 +12,6 @@ from src.domain.services.reservation_eligibility_service import (
 from src.domain.value_objects.seat_number import SeatNumber
 
 
-# T4 — BR4: Reservation Eligibility
-# BR4: A Reservation is eligible for confirmation only when the Show has not
-# started AND the customer has fewer than four confirmed seats for that Show.
-
-
 NOW = datetime(2026, 10, 1, 12, 0, 0)
 SOON = NOW + timedelta(hours=1)
 PAST = NOW - timedelta(hours=1)

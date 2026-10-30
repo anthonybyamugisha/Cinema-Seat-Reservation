@@ -12,7 +12,6 @@ from src.domain.value_objects.seat_number import SeatNumber
 SeatRef = Union[SeatNumber, str]
 MAX_ROWS = 26  # BR1 only allows the row letters A-Z
 
-
 def _as_seat_number(seat: SeatRef) -> SeatNumber:
     """Accept a SeatNumber or raw text; raw text is validated by BR1."""
     return seat if isinstance(seat, SeatNumber) else SeatNumber(seat)
@@ -20,20 +19,6 @@ def _as_seat_number(seat: SeatRef) -> SeatNumber:
 
 @dataclass(eq=False)
 class Show:
-    """
-    Aggregate Root for BR3.
-
-    BR3: Within one Show, a ShowSeat may be allocated to at most one Reservation.
-    A reserved seat cannot be allocated to another reservation.
-
-    The guard in reserve_seat() is the only place a ShowSeat changes from
-    available to reserved, and ShowSeat._reserve() is aggregate-internal, so the
-    invariant cannot be bypassed from outside.
-
-    The Show also owns the seat map, so it is the Show - not a repository - that
-    answers "how many seats does this customer hold in this show?" for BR4.
-    """
-
     show_id: str
     start_time: datetime
     seats: List[ShowSeat] = field(default_factory=list)
@@ -45,14 +30,7 @@ class Show:
         start_time: datetime,
         rows: int = 5,
         seats_per_row: int = 10,
-    ) -> "Show":
-        """Factory.
-
-        Building the whole seat map is a construction rule - every row exists,
-        every seat starts AVAILABLE - so it is not left to the caller to
-        assemble by hand. Nothing else in the domain needs a Factory: a
-        Reservation is fully described by its constructor.
-        """
+    ) -> "Show":  
         if not 1 <= rows <= MAX_ROWS:
             raise ValueError(f"A show can have 1 to {MAX_ROWS} rows, got {rows}.")
         if seats_per_row < 1:

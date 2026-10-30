@@ -3,7 +3,7 @@ Domain-Driven Design, Test-Driven Development and Clean Architecture.
 
 ## Domain
 
-Cinema Reserved Seating
+Cinema Seat Reservation
 
 ## Project Scope
 

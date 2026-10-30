@@ -16,11 +16,6 @@ from src.infrastructure.repositories.in_memory_show_repository import (
 )
 
 
-# T5 — BR5: ReservationConfirmed Domain Event
-# BR5: When a Reservation is confirmed, a ReservationConfirmed domain event
-# requests the Show to reserve the SeatNumber.
-
-
 def _reservation():
     return Reservation(
         reservation_id="R001",

@@ -12,23 +12,6 @@ class SeatStatus(Enum):
 
 @dataclass(eq=False)
 class ShowSeat:
-    """
-    Entity inside the Show aggregate for BR3.
-
-    BR3: Within one Show, a ShowSeat may be allocated to at most one Reservation.
-
-    Identity is seat_number. Inside one Show there is exactly one seat with a
-    given number, and it is the same seat before and after it is booked, so
-    equality compares seat_number rather than every field.
-
-    It also records who holds it (reservation_id, customer_id). That is what lets
-    the Show answer BR4's "how many seats does this customer hold here?" without
-    leaving its own boundary.
-
-    Only Show may change a ShowSeat, which is why the mutating member is prefixed
-    with "_" and the BR3 guard lives in Show.reserve_seat().
-    """
-
     seat_number: SeatNumber
     status: SeatStatus = field(default=SeatStatus.AVAILABLE)
     reservation_id: Optional[str] = None

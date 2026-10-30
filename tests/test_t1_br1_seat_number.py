@@ -4,12 +4,6 @@ import pytest
 from src.domain.value_objects.seat_number import SeatNumber
 from src.domain.exceptions.domain_exceptions import InvalidSeatNumberError
 
-
-# T1 — BR1: SeatNumber Validation
-# BR1: A SeatNumber is valid only when it contains one row letter from A-Z
-# followed by a seat position from 1-50.
-
-
 def test_t1_br1_accepts_valid_seat_numbers():
     valid_seats = ["A1", "B12", "Z50"]
 

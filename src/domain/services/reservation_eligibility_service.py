@@ -6,18 +6,6 @@ from src.domain.exceptions.domain_exceptions import ReservationNotEligibleError
 
 
 class ReservationEligibilityService:
-    """Domain Service for BR4.
-
-    BR4: A Reservation is eligible for confirmation only when the Show has not
-    started AND the customer holds fewer than four confirmed seats for that Show.
-
-    It is a Domain Service because the rule spans two aggregates - Reservation
-    (Aggregate A) and Show (Aggregate B) - so it cannot live inside either one.
-    It is stateless and holds no collaborators, in particular no repository:
-    both inputs arrive as aggregates, so the rule is decided entirely inside the
-    Domain layer. This is what keeps the dependency direction inward.
-    """
-
     MAX_CONFIRMED_SEATS_PER_SHOW = 4
 
     def check_eligibility(

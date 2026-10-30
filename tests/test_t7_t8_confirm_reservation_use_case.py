@@ -23,12 +23,6 @@ from src.infrastructure.repositories.in_memory_show_repository import (
     InMemoryShowRepository,
 )
 
-
-# T7 — Main use case: Confirm a Seat Reservation succeeds.
-#      The ReservationConfirmed event is handled and the Show reserves the seat.
-# T8 — Aggregate B (Show) rejects the follow-up action (seat already reserved).
-#      The use case reports failure and the Reservation stays PENDING.
-
 NOW = datetime(2026, 10, 1, 12, 0, 0)
 
 
